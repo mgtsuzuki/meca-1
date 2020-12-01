@@ -1,0 +1,19 @@
+<p>
+<%= link_to "Home", root_path %> |
+<% if current_user %>
+  Logado como: <%= current_user.email %> |
+  <% if current_user.role == "admin" %>
+    Mensagem aos administradores. |
+  <% elsif current_user.role == "professor" %>
+    Mensagem aos professores. |
+  <% else %>
+    Mensagem aos alunos. | 
+    <%= link_to "Complemento", [current_user, current_user.complemento] %> |
+  <% end %>
+  <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+<% else %>
+  <%= link_to "Sign Up", new_registration_path(resource) %> |
+  <%= link_to "Log In", new_session_path(resource) %>
+<% end %>
+</p>
+<hr>
